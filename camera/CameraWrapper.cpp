@@ -69,6 +69,9 @@ camera_module_t HAL_MODULE_INFO_SYM = {
     get_number_of_cameras: camera_get_number_of_cameras,
     get_camera_info: camera_get_camera_info,
     set_callbacks: NULL,
+    get_vendor_tag_ops: NULL, /* remove compilation warnings */
+    open_legacy: NULL, /* remove compilation warnings */
+    reserved: {0},
 };
 
 typedef struct wrapper_camera_device {
@@ -120,12 +123,16 @@ static char *camera_fixup_getparams(int id, const char *settings)
             params.set(android::CameraParameters::KEY_SUPPORTED_FOCUS_MODES,
                     "auto,macro,fixed,continuous-video,face-priority");
         }
+
+        // Force 1280x720 preview size
+        params.remove(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO);
+        params.set(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO,
+                "1280x720");
     }
 
     /* Front-Facing Camera */
     if (id == 1) {
         // Force 640x480 preview size
-        params.remove(android::CameraParameters::KEY_SUPPORTED_VIDEO_SIZES);
         params.remove(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO);
         params.set(android::CameraParameters::KEY_PREFERRED_PREVIEW_SIZE_FOR_VIDEO,
                 "640x480");
