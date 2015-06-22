@@ -183,7 +183,6 @@ USE_LTO := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
-TW_BRIGHTNESS_PATH := /sys/devices/platform/msm_fb.196609/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_NO_CPU_TEMP := true
 TW_INTERNAL_STORAGE_PATH := "/sdcard"
