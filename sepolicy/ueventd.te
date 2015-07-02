@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 allow ueventd keypad_dev:file getattr;
 allow ueventd vfat:dir search;
 allow ueventd vfat:file r_file_perms;
+=======
+allow ueventd firmware_file:lnk_file { read getattr open };
+allow ueventd keypad_dev:file getattr;
+allow ueventd panel_dev:file { getattr relabelto };
+allow ueventd power_dev:file { getattr relabelto };
+>>>>>>> 2d0756f... msm8660: update selinux policies for lollipop
 allow ueventd unlabeled:dir search;
 allow ueventd unlabeled:file { read open getattr };

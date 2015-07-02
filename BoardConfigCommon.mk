@@ -95,36 +95,32 @@ BOARD_SEPOLICY_DIRS += \
     device/samsung/msm8660-common/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    bluetooth.te \
-    bootanim.te \
     device.te \
     file.te \
     file_contexts \
     gamma_dev.te \
-    genfs_contexts \
+    healthd.te \
+    init.te \
     init_shell.te \
     kernel.te \
     keypad_dev.te \
-    macloader.te \
+    mdm_helper.te \
     mediaserver.te \
-    mm-qcamerad.te \
     mpdecision.te \
     netmgrd.te \
-    orientationd.te \
     panel_dev.te \
-    platform_app.te \
     power_dev.te \
-    property_contexts \
     qmuxd.te \
-    recovery.te \
+    qseecomd.te \
+    radio.te \
     rild.te \
     rmt_storage.te \
+    secril-daemon.te \
     surfaceflinger.te \
     sysinit.te \
     system_app.te \
     system_server.te \
     thermal-engine.te \
-    thermald.te \
     ueventd.te \
     vold.te \
     wpa.te
