@@ -61,6 +61,9 @@ on early-boot
     setrlimit 8 67108864 67108864
     exec /system/bin/sh /init.qcom.syspart_fixup.sh
 
+    # subsystem restart level
+    setprop persist.sys.ssr.restart_level 3
+
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
