@@ -146,6 +146,9 @@ BOARD_SEPOLICY_UNION += \
     wpa_socket.te \
     wpa.te
 
+# Small system partition flag
+TARGET_HAVE_SMALL_SYSTEM_PARTITION := true
+
 # Wifi related defines
 BOARD_HAVE_SAMSUNG_WIFI := true
 BOARD_NO_WIFI_HAL := true
