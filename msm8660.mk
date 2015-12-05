@@ -79,8 +79,9 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     ueventd.qcom.rc
 
-# Recovery-Ramdisk
+# TWRP Recovery-Ramdisk
 PRODUCT_PACKAGES += \
+    runatboot.sh \
     twrp.fstab
 
 # Audio
