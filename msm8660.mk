@@ -194,10 +194,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libstlport
 
-# Slim File Manager
-PRODUCT_PACKAGES += \
-    SlimFileManager
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
