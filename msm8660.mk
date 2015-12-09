@@ -90,12 +90,15 @@ PRODUCT_PACKAGES += \
     runatboot.sh \
     twrp.fstab
 
+# Audio config
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8660-common/configs/audio_policy.conf:system/etc/audio_policy.conf
+    
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
-    audio_policy.conf \
-    audio_policy.msm8660 \
+    audio.r_submix.default \
     audio.primary.msm8660 \
     libaudio-resampler \
     libaudioutils
