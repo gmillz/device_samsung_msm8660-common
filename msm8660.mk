@@ -125,8 +125,7 @@ PRODUCT_PACKAGES += \
 
 # GalaxyS2Settings
 PRODUCT_PACKAGES += \
-    GalaxyS2Settings \
-    SamsungServiceMode
+    GalaxyS2Settings
 
 # GPS
 PRODUCT_PACKAGES += \
