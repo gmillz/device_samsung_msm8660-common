@@ -40,7 +40,11 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 
 /**
- * Qualcomm RIL for the Samsung MSM8660 family.
+ * Qualcomm RIL for the Samsung family.
+ * Quad core Exynos4 with Qualcomm modem and later is supported
+ * Snapdragon S3 and later is supported
+ * This RIL is univerisal meaning it supports CDMA and GSM radio.
+ * Handles most GSM and CDMA cases.
  * {@hide}
  */
 public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
@@ -162,6 +166,9 @@ public class SamsungMSM8660RIL extends RIL implements CommandsInterface {
             dc.als = p.readInt();
             voiceSettings = p.readInt();
             dc.isVoice = (0 == voiceSettings) ? false : true;
+            p.readInt();    // Samsung CallDetails
+            p.readInt();    // Samsung CallDetails
+            p.readString(); // Samsung CallDetails
             dc.isVoicePrivacy = (0 != p.readInt());
             dc.number = p.readString();
             int np = p.readInt();
