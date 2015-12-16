@@ -42,7 +42,7 @@ static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
 static int camera_device_open(const hw_module_t *module, const char *name,
-        hw_device_t **device);
+                hw_device_t **device);
 static int camera_get_number_of_cameras(void);
 static int camera_get_camera_info(int camera_id, struct camera_info *info);
 static int camera_preview_enabled(struct camera_device *device);
@@ -53,7 +53,7 @@ static struct hw_module_methods_t camera_module_methods = {
 
 camera_module_t HAL_MODULE_INFO_SYM = {
     .common = {
-         .tag = HARDWARE_MODULE_TAG,
+         tag: HARDWARE_MODULE_TAG,
          .module_api_version = CAMERA_MODULE_API_VERSION_1_0,
          .hal_api_version = HARDWARE_HAL_API_VERSION,
          .id = CAMERA_HARDWARE_MODULE_ID,
@@ -68,6 +68,8 @@ camera_module_t HAL_MODULE_INFO_SYM = {
     .set_callbacks = NULL, /* remove compilation warnings */
     .get_vendor_tag_ops = NULL, /* remove compilation warnings */
     .open_legacy = NULL, /* remove compilation warnings */
+    .set_torch_mode = NULL, /* remove compilation warnings */
+    .init = NULL, /* remove compilation warnings */
     .reserved = {0}, /* remove compilation warnings */
 };
 
@@ -98,7 +100,7 @@ static int check_vendor_module()
     return rv;
 }
 
-static char *camera_fixup_getparams(const char *settings)
+static char *camera_fixup_getparams(int id, const char *settings)
 {
     android::CameraParameters2 params;
     params.unflatten(android::String8(settings));
@@ -131,7 +133,7 @@ static char *camera_fixup_getparams(const char *settings)
     return ret;
 }
 
-static char *camera_fixup_setparams(int id, const char *settings)
+static char *camera_fixup_setparams(int id, const char *settings, struct camera_device *device)
 {
     bool isVideo = false;
 
@@ -320,7 +322,7 @@ static int camera_recording_enabled(struct camera_device *device)
 }
 
 static void camera_release_recording_frame(struct camera_device *device,
-        const void *opaque)
+                const void *opaque)
 {
     ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device,
             (uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
@@ -367,7 +369,7 @@ static int camera_take_picture(struct camera_device *device)
 
 static int camera_cancel_picture(struct camera_device *device)
 {
-    ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device,
+    ALOGV("%s->%08X->%08X",__FUNCTION__, (uintptr_t)device,
             (uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
 
     if (!device)
@@ -386,7 +388,7 @@ static int camera_set_parameters(struct camera_device *device,
         return -EINVAL;
 
     char *tmp = NULL;
-    tmp = camera_fixup_setparams(CAMERA_ID(device), params);
+    tmp = camera_fixup_setparams(CAMERA_ID(device), params, device);
 
 #ifdef LOG_PARAMETERS
     __android_log_write(ANDROID_LOG_VERBOSE, LOG_TAG, tmp);
@@ -440,7 +442,7 @@ static void camera_put_parameters(struct camera_device *device, char *params)
 }
 
 static int camera_send_command(struct camera_device *device,
-        int32_t cmd, int32_t arg1, int32_t arg2)
+            int32_t cmd, int32_t arg1, int32_t arg2)
 {
     ALOGV("%s->%08X->%08X", __FUNCTION__, (uintptr_t)device,
             (uintptr_t)(((wrapper_camera_device_t*)device)->vendor));
@@ -510,7 +512,7 @@ done:
  */
 
 static int camera_device_open(const hw_module_t *module, const char *name,
-        hw_device_t **device)
+                hw_device_t **device)
 {
     int rv = 0;
     int num_cameras = 0;
@@ -549,8 +551,8 @@ static int camera_device_open(const hw_module_t *module, const char *name,
         wasVideo = false;
 
         rv = gVendorModule->common.methods->open(
-                (const hw_module_t*)gVendorModule, name,
-                (hw_device_t**)&(camera_device->vendor));
+                    (const hw_module_t*)gVendorModule, name,
+                    (hw_device_t**)&(camera_device->vendor));
         if (rv) {
             ALOGE("vendor camera open fail");
             goto fail;
@@ -630,3 +632,4 @@ static int camera_get_camera_info(int camera_id, struct camera_info *info)
         return 0;
     return gVendorModule->get_camera_info(camera_id, info);
 }
+
