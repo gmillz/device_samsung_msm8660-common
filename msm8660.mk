@@ -100,11 +100,6 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
-    
-# Camera wrapper
-PRODUCT_PACKAGES += \
-    camera.msm8660 \
-    libshim_camera
 
 # Chromecast
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -128,10 +123,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
-    
-# Hardware bypass
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.hwc.mdpcomp.enable=false    
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -200,9 +191,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libstlport
 
-# System properties
--include $(LOCAL_PATH)/system_prop.mk
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -221,6 +209,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
+# Hardware bypass
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.hwc.mdpcomp.enable=false
+
 # Common Qualcomm hardware
     $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
-    
