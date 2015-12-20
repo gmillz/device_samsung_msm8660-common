@@ -134,7 +134,7 @@ TW_CRYPTO_FS_OPTIONS := "noauto_da_alloc"
 TW_CRYPTO_FS_FLAGS := "0x00000006"
 TW_CRYPTO_KEY_LOC := "/efs/metadata"
 TW_MAX_BRIGHTNESS := 255
-
+TW_THEME := portrait_mdpi
 
 # Wifi related defines
 BOARD_HAVE_SAMSUNG_WIFI := true
