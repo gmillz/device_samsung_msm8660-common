@@ -1,0 +1,2 @@
+allow recovery kernel:security setenforce;
+allow recovery selinuxfs:file write;
