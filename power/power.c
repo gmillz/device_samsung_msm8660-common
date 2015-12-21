@@ -281,9 +281,9 @@ static struct hw_module_methods_t power_module_methods = {
 static int get_feature(__attribute__((unused)) struct power_module *module,
                        feature_t feature)
 {
-    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
+/*    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
         return PROFILE_MAX;
-    }
+    }*/
     return -1;
 }
 
