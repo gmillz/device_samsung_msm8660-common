@@ -125,7 +125,9 @@ PRODUCT_PACKAGES += \
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
+    mkfs.f2fs \
     fsck.f2fs \
+    fibmap.f2fs \
     resize2fs_static
 
 # GPS
