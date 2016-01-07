@@ -103,6 +103,10 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libaudioutils
 
+# BoringSSL hack
+PRODUCT_PACKAGES += \
+    libboringssl-compat
+    
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8660
@@ -113,6 +117,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Compatibility symbols wrappers
 PRODUCT_PACKAGES += \
+    libboringssl-compat \
     libsamsung_symbols
 
 # Debug - For userdebug builds
