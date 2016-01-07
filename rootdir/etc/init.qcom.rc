@@ -177,8 +177,12 @@ on boot
 # msm specific files that need to be created on /data
 on post-fs-data
 
-     #  bluetooth
-#    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+    #  bluetooth
+#   mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+
+    # we will remap this as /mnt/sdcard with the sdcard fuse tool
+    mkdir /data/media 0775 media_rw media_rw
+    chown media_rw media_rw /data/media
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi
